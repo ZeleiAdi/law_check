@@ -1,6 +1,13 @@
-*a* is "szemely"
-"szemely" is "Magyarorszag allampolgara" or "Libanon allampolgara" or "other"
-*a* is "Magyarorszag allampolgara"
-if *a* is "Magyarorszag allampolgara"
-  then *belephet* is "vizum nelkul"
+"fél" is either "Magyarország Kormánya" or "Libanoni Köztársaság Kormánya"
+"személy" is "diplomata útlevéllel rendelkező"
+*fél* is "fél"
+
+if *fél* is "Magyarország Kormánya"
+  then *másik fél* is "Libanoni Köztársaság Kormánya"
 end
+if *fél* is "Libanoni Köztársaság Kormánya"
+  then *másik fél* is "Magyarország Kormánya"
+end
+
+"belépés" is "vízum nélkül" or "előzetesen kiállított vízum birtokában"
+*személy* is "személy"
