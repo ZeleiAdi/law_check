@@ -1,0 +1,6 @@
+*a* is "szemely"
+"szemely" is "Magyarorszag allampolgara" or "Libanon allampolgara" or "other"
+*a* is "Magyarorszag allampolgara"
+if *a* is "Magyarorszag allampolgara"
+  then *belephet* is "vizum nelkul"
+end
