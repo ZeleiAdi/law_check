@@ -12,7 +12,7 @@ grammar Law::Grammar {
   }
 
   rule partition {
-    <set_path> is <either>? <set_literals>
+    <set_path> can be <either>? <set_literals>
   }
 
   rule set_path {
@@ -36,7 +36,7 @@ grammar Law::Grammar {
   }
 
   rule binding {
-    <name_literal> is <set_literal>
+    <name_literal> is <set_path>
   }
 
   token name_literal {

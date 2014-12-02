@@ -38,7 +38,7 @@ class Law::Actions {
   }
 
   method binding($/) {
-    make({binding => {name => $/<name_literal>.ast, set => ($/<set_literal>.ast)}});
+    make({binding => {name => $/<name_literal>.ast, set => ($/<set_path>.ast)}});
   }
 
   method name_literal($/) {
