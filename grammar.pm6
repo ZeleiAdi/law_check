@@ -12,7 +12,11 @@ grammar Law::Grammar {
   }
 
   rule partition {
-    <set_literal> is <either>? <set_literals>
+    <set_path> is <either>? <set_literals>
+  }
+
+  rule set_path {
+    [<set_literal> ]+
   }
 
   rule set_literals {

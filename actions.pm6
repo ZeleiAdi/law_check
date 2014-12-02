@@ -18,7 +18,11 @@ class Law::Actions {
   }
 
   method partition($/) {
-    make({partition => {set => $/<set_literal>.ast, subsets => $/<set_literals>.ast, complete => $/<either>.Bool}});
+    make({partition => {set => $/<set_path>.ast, subsets => $/<set_literals>.ast, complete => $/<either>.Bool}});
+  }
+
+  method set_path($/) {
+    make($/<set_literal>.map(*.ast));
   }
 
   method set_literals($/) {
