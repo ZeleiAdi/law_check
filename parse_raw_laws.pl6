@@ -5,8 +5,7 @@ use lib '.';
 use grammar;
 use actions;
 
-use JSON;
-
-sub MAIN($in_file_path, $out_file_path) {
-  open($out_file_path, :w).say(to-json(Law::Grammar.parsefile($in_file_path, :actions(Law::Actions.new())).ast));
+sub MAIN() {
+  my $parsed = Law::Grammar.parse(slurp, :actions(Law::Actions.new()));
+  say(to-json($parsed.ast));
 }
