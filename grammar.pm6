@@ -1,67 +1,73 @@
 grammar Law::Grammar {
   rule TOP {
-    <ws><expressions>
+    ^ <expressions> <top_unparsable>? $
+  }
+
+  rule top_unparsable {
+    .+
   }
 
   rule expressions {
-    [<expression> ]+
+    <expression>*%[<[\s] - [\n]>*\n\s*]
   }
 
-  rule expression {
+  token expression {
     <partition>|<binding>|<conditional>
   }
 
-  rule partition {
-    <set_path> can be <either>? <set_literals>
+  token partition {
+    <set_path>\s+can\s+be[\s+<complete>]?\s+<set_union>
   }
 
-  rule set_path {
-    [<set_literal> ]+
-  }
-
-  rule set_literals {
-    <set_literal> [or <set_literal> ]*
+  token set_path {
+    <set_literal>+%<[\s] - [\n]>+
   }
 
   token set_literal {
-    \"<set>\"
+    \"<set_name>\"
   }
 
-  token set {
+  token set_name {
     <-[\"]>+
   }
 
-  token either {
+  token complete {
     either
   }
 
-  rule binding {
-    <name_literal> is <set_path>
+  token set_union {
+    <set_literal>+%[\s+or\s+]
+  }
+
+  token binding {
+    <name_literal>\s+is\s+<set_path>
   }
 
   token name_literal {
-    \*<name>\*
+    \*<name_name>\*
   }
 
-  token name {
+  token name_name {
     <-[*]>+
   }
 
-  rule conditional {
-    if <conditions> then
-      <conclusion>
-    end
+  token conditional {
+    if\s+<conditions>\s+then\s*<consequences>\s*end
   }
 
-  rule conditions {
-    <condition> [and <condition> ]*
+  token conditions {
+    <condition>+%[\s+and\s+]
   }
 
-  rule condition {
-    <binding>
+  token condition {
+    <name_literal>\s+is\s+<set_path>
   }
 
-  rule conclusion {
-    <expressions>
+  token consequences {
+    <expressions>\s*<consequences_unparsable>?
+  }
+
+  token consequences_unparsable {
+    [<-[e]>|e<!before nd>]+
   }
 }
