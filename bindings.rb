@@ -14,6 +14,10 @@ module LawCheck
       @bindings.find { |binding| binding.name == binding_name }
     end
 
+    def replace(old_binding, new_binding)
+      @bindings = @bindings - [old_binding] + [new_binding]
+    end
+
     def add(binding)
       if @partitions.valid_path?(binding.path)
         current_binding = binding_by_name(binding.name)
@@ -21,10 +25,12 @@ module LawCheck
           @bindings += [binding]
         else
           if @partitions.contradict?(binding.path, current_binding.path)
-            warning('Contradiction between bindings', binding, current_binding)
+            warning('Contradiction between bindings',
+                    "current: #{current_binding.path}",
+                    "new: #{binding.path}")
           else
             if @partitions.superset?(superset_path: binding.path, set_path: current_binding.path)
-              @bindings += [binding]
+              replace(current_binding, binding)
             else
               warning('The new binding is a superset of the current binding',
                       "current: #{current_binding.path}",
@@ -33,7 +39,8 @@ module LawCheck
           end
         end
       else
-        warning('Invalid path:', binding.path)
+        warning('Invalid path:',
+                binding.path)
       end
 
       self

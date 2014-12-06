@@ -6,9 +6,9 @@ module LawCheck
       @name = name
       @path = path
     end
-    
+
     attr_reader :name, :path
-    
+
     def to_s
       "#{@name}: #{@path}"
     end
