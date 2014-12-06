@@ -9,10 +9,6 @@ module LawCheck
     
     attr_reader :name, :path
     
-    def contradict?(other_binding, partitions)
-      true
-    end
-    
     def to_s
       "#{@name}: #{@path}"
     end
