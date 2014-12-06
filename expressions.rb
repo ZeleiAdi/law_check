@@ -2,7 +2,7 @@ require_relative './partition'
 require_relative './partitions'
 
 # require_relative './bindings'
-# require_relative './binding'
+require_relative './binding'
 # require_relative './conditionals'
 # require_relative './conditional'
 
@@ -14,6 +14,8 @@ module LawCheck
         case raw_expression
         when Partition
           p partitions.add(Partition.parse(raw_expression), Partition.parse_path(raw_expression))
+        when Binding
+          p Binding.parse(raw_expression)
         end
       end
     end
