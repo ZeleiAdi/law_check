@@ -1,5 +1,8 @@
 require_relative './partition'
 require_relative './path'
+
+require_relative './warning'
+
 module LawCheck
   # a consistent set of partitions
   class Partitions
@@ -28,7 +31,7 @@ module LawCheck
         if @partitions.all? { |other_partition| partition.orthogonal? other_partition }
           @partitions += [partition]
         else
-          warn("Nonorthogonal partition: #{partition}")
+          warning('Nonorthogonal partition:', partition)
         end
       else
         subset = partition_of_subset(path.first_name)
