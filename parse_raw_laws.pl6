@@ -1,3 +1,4 @@
+#!/usr/bin/env perl6-m
 use v6;
 
 use lib '.';
