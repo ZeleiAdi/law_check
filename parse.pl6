@@ -6,7 +6,7 @@ use lib '.';
 use grammar;
 use actions;
 
-sub MAIN(*@filenames) {
+sub MAIN(*@_) {
   my $parsed = Law::Grammar.parse($*ARGFILES.slurp, :actions(Law::Actions.new()));
   say(to-json($parsed.ast));
 }
