@@ -4,8 +4,8 @@ class Law::Actions {
   }
 
   method top_unparsable($/) {
-    say("\e[31m" ~ '!!! wrong syntax !!!' ~ "\e[0m");
-    note($/.Str);
+    note("\e[31mInvalid expression at line {$/.prematch.split("\n").elems}!\e[0m");
+    note("\e[33m$/\e[0m");
   }
 
   method expressions($/) {
