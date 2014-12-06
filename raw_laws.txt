@@ -1,13 +1,22 @@
-"fél" is either "Magyarország Kormánya" or "Libanoni Köztársaság Kormánya"
-"személy" is "diplomata útlevéllel rendelkező"
+"fél" can be either "Magyarország Kormánya" or
+                    "Libanoni Köztársaság Kormánya"
 *fél* is "fél"
+*fél* is "Libanoni Köztársaság Kormánya"
+
+"személy" can be "diplomata útlevéllel rendelkező"
 
 if *fél* is "Magyarország Kormánya"
-  then *másik fél* is "Libanoni Köztársaság Kormánya"
-end
-if *fél* is "Libanoni Köztársaság Kormánya"
-  then *másik fél* is "Magyarország Kormánya"
+then *másik fél* is "Libanoni Köztársaság Kormánya"
 end
 
-"belépés" is "vízum nélkül" or "előzetesen kiállított vízum birtokában"
+if *fél* is "Libanoni Köztársaság Kormánya"
+then  *másik fél* is "Magyarország Kormánya"
+nd
+
+"belépés" can be "vízum nélkül" or "előzetesen kiállított vízum birtokában"
+
 *személy* is "személy"
+
+"személy" can be "állampolgár"
+"személy" "állampolgár" can be "Magyarország Kormánya" or
+                               "Libanoni Köztársaság Kormánya"
