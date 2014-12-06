@@ -11,7 +11,7 @@ end
 
 if *fél* is "Libanoni Köztársaság Kormánya"
 then  *másik fél* is "Magyarország Kormánya"
-nd
+end
 
 "belépés" can be "vízum nélkül" or "előzetesen kiállított vízum birtokában"
 
