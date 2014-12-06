@@ -25,11 +25,15 @@ module LawCheck
 
     def create(partition, path)
       if path.empty?
-        @partitions += [partition]
+        if @partitions.all? { |other_partition| partition.orthogonal? other_partition }
+          @partitions += [partition]
+        else
+          warn("Nonorthogonal partition: #{partition}")
+        end
       else
         subset = partition_of_subset(path.first_name)
         if subset.nil?
-          warn("invalid path component: #{path}")
+          warn("Invalid path component: #{path}")
         else
           subset[path.first_name].create(partition, path.rest_names)
         end

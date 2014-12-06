@@ -20,16 +20,16 @@ module LawCheck
       @subsets.include? subset_name
     end
 
-    def joint?(other_partition)
-      @subsets.any? { |subset| other_partition.include? subset }
-    end
-
     def [](subset_name)
       @subsets[subset_name]
     end
 
     def orthogonal?(other_partition)
-      not joint?(other_partition)
+      @subsets.keys.all? { |subset| not other_partition.include?(subset) }
+    end
+
+    def to_s
+      @subsets.keys.join(' or ')
     end
 
     def self.===(raw_expression)
