@@ -5,10 +5,7 @@ module LawCheck
   class Partition
     def initialize(subsets, complete)
       @subsets = {}
-      subsets.each do |subset|
-        @subsets[subset] = Partitions.new
-      end
-
+      subsets.each { |subset| @subsets[subset] = Partitions.new }
       @complete = complete
     end
 
